@@ -1,0 +1,73 @@
+/survey:
+
+Description: Posts survey data to server.
+URL structure: "https://aws.execute-api.us-east-2.amazonaws.com/prod/survey/"
+Authentication: Not required
+Input: 
+    {
+      "responses": {
+        "Permanent WFH": wfh,
+        "Hybrid": hw,
+        "Office": ow,
+      }
+    }
+Output:
+  Success:
+      {
+        "statusCode": 200,
+        "body": "\"Responses are captured!\""
+      }
+
+  Failure:
+      {
+        "statusCode": 201,
+        "body": "\"Responses are not captured!\""
+      }
+
+Usage (python):
+  surveyAPI = "https://aws.execute-api.us-east-2.amazonaws.com/prod/survey/"
+  data = {
+        "responses": {
+          "Permanent WFH": wfh,
+          "Hybrid": hw,
+          "Office": ow,
+        }
+    }
+  response = requests.post(surveyAPI, json.dumps(data))
+  resp = json.loads(response.content)
+------------------------------------------------------------------------------------------
+
+/results:
+
+Description: Gets survey results from server.
+URL structure: "https://aws.execute-api.us-east-2.amazonaws.com/prod/results/"
+Authentication: Not required
+Input: None
+Output(sample):
+ {
+    "statusCode": 200,
+    "body": {
+      "Aggregate": {
+        "PWH": 1,
+        "OW": 0,
+        "HW": 1
+      },
+      "Responses": [
+        {
+          "id": "2021-10-12 05:45:35.195387",
+          "message": {
+            "Hybrid": 1,
+            "Office": 0,
+            "Permanent WFH": 1
+          }
+        }
+      ]
+ }
+
+Usage (python):
+  surveyAPI = "https://aws.execute-api.us-east-2.amazonaws.com/prod/results/"
+  response = requests.get(resAPI, {})
+  resp = json.loads(response.content)
+
+
+
