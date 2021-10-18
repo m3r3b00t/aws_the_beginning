@@ -1,3 +1,6 @@
+"""
+Python code for survey lamda function.
+"""
 import json
 import boto3
 import datetime
