@@ -3,7 +3,7 @@
 Description: Posts survey data to server.
 URL structure: "https://aws.execute-api.us-east-2.amazonaws.com/prod/survey/"
 Authentication: Not required
-Input: 
+Input/Parametes: 
     {
       "responses": {
         "Permanent WFH": wfh,
@@ -11,7 +11,7 @@ Input:
         "Office": ow,
       }
     }
-Output:
+Output/Return:
   Success:
       {
         "statusCode": 200,
@@ -42,8 +42,8 @@ Usage (python):
 Description: Gets survey results from server.
 URL structure: "https://aws.execute-api.us-east-2.amazonaws.com/prod/results/"
 Authentication: Not required
-Input: None
-Output(sample):
+Input/Parameters: None
+Output/Return(sample):
  {
     "statusCode": 200,
     "body": {
